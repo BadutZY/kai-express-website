@@ -1,5 +1,2 @@
-# Dependencies
-vendor/
-
 # Environment variables
 .env

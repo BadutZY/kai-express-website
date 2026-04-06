@@ -26,6 +26,7 @@
 
 1. Buka folder code pada Visual Studio Code
 2. Buka terminal pada Visual Studio Code
+3. Ubah file ".env.example" menjadi ".env"
 3. Install semua package PHP:
    ```bash
    composer install
