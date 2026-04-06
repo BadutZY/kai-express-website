@@ -27,20 +27,20 @@
 1. Buka folder code pada Visual Studio Code
 2. Buka terminal pada Visual Studio Code
 3. Ubah file ".env.example" menjadi ".env"
-3. Install semua package PHP:
+4. Install semua package PHP:
    ```bash
    composer install
    ```
    Tunggu hingga selesai (butuh koneksi internet)
-4. Generate key untuk menjalankan website
+5. Generate key untuk menjalankan website
    ```bash
    php artisan key:generate
    ```
-5. Menghubungkan storage agar foto profile dapat terlihat di website
+6. Menghubungkan storage agar foto profile dapat terlihat di website
    ```bash
    php artisan storage:link
    ```
-6. Jalankan website
+7. Jalankan website
    ```bash
    php artisan serve
    ```
