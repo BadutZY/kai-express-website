@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'KAI Express') — KAI Express</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo-kai.png') }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+    <title><?php echo $__env->yieldContent('title', 'KAI Express'); ?> — KAI Express</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo e(asset('images/logo-kai.png')); ?>">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -1213,7 +1213,7 @@
             flex-shrink: 0;
         }
     </style>
-    @stack('styles')
+    <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
 
 <body>
@@ -1226,7 +1226,7 @@
         <div class="amd-header">
             <div class="amd-brand">
                 <div class="amd-brand-icon">
-                    <img src="{{ asset('images/logo-kai.png') }}" alt="KAI Logo">
+                    <img src="<?php echo e(asset('images/logo-kai.png')); ?>" alt="KAI Logo">
                 </div>
                 <div>
                     <div class="amd-brand-name">KAI Express</div>
@@ -1241,7 +1241,7 @@
         </div>
         <div class="amd-nav">
             <div class="amd-nav-label">Utama</div>
-            <a href="{{ route('admin.dashboard') }}" class="amd-nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.dashboard')); ?>" class="amd-nav-item <?php echo e(request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
                     <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
@@ -1249,38 +1249,38 @@
                 Dashboard
             </a>
             <div class="amd-nav-label" style="margin-top:6px;">Data Master</div>
-            <a href="{{ route('admin.penumpang.index') }}" class="amd-nav-item {{ request()->routeIs('admin.penumpang.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.penumpang.index')); ?>" class="amd-nav-item <?php echo e(request()->routeIs('admin.penumpang.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                 </svg>
                 Penumpang
             </a>
-            <a href="{{ route('admin.kereta.index') }}" class="amd-nav-item {{ request()->routeIs('admin.kereta.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.kereta.index')); ?>" class="amd-nav-item <?php echo e(request()->routeIs('admin.kereta.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m16.5 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
                 </svg>
                 Kereta
             </a>
-            <a href="{{ route('admin.jadwal.index') }}" class="amd-nav-item {{ request()->routeIs('admin.jadwal.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.jadwal.index')); ?>" class="amd-nav-item <?php echo e(request()->routeIs('admin.jadwal.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
                 </svg>
                 Jadwal
             </a>
             <div class="amd-nav-label" style="margin-top:6px;">Transaksi</div>
-            <a href="{{ route('admin.pemesanan.index') }}" class="amd-nav-item {{ request()->routeIs('admin.pemesanan.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.pemesanan.index')); ?>" class="amd-nav-item <?php echo e(request()->routeIs('admin.pemesanan.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"/>
                 </svg>
                 Pemesanan
             </a>
-            <a href="{{ route('admin.laporan') }}" class="amd-nav-item {{ request()->routeIs('admin.laporan') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.laporan')); ?>" class="amd-nav-item <?php echo e(request()->routeIs('admin.laporan') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
                 </svg>
                 Laporan
             </a>
-            <a href="{{ route('admin.users.index') }}" class="amd-nav-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.users.index')); ?>" class="amd-nav-item <?php echo e(request()->routeIs('admin.users.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
                 </svg>
@@ -1293,8 +1293,8 @@
                 <div class="status-text">Sistem Aktif</div>
                 <div style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--text-muted);" id="drawerTime">--:--</div>
             </div>
-            <form method="POST" action="{{ route('logout') }}" style="margin-top:8px;">
-                @csrf
+            <form method="POST" action="<?php echo e(route('logout')); ?>" style="margin-top:8px;">
+                <?php echo csrf_field(); ?>
                 <button type="submit" class="amd-logout">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/>
@@ -1309,9 +1309,9 @@
 
     <!-- SIDEBAR -->
     <nav class="sidebar" id="sidebar">
-        <a href="{{ route('admin.dashboard') }}" class="sidebar-brand text-decoration-none">
+        <a href="<?php echo e(route('admin.dashboard')); ?>" class="sidebar-brand text-decoration-none">
             <div class="brand-icon">
-                <img src="{{ asset('images/logo-kai.png') }}" alt="KAI Logo">
+                <img src="<?php echo e(asset('images/logo-kai.png')); ?>" alt="KAI Logo">
             </div>
             <div>
                 <div class="brand-name">KAI Express</div>
@@ -1321,7 +1321,7 @@
 
         <div class="sidebar-nav">
             <div class="nav-label">Utama</div>
-            <a href="{{ route('admin.dashboard') }}" class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.dashboard')); ?>" class="nav-item <?php echo e(request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <rect x="3" y="3" width="7" height="7" rx="1" />
                     <rect x="14" y="3" width="7" height="7" rx="1" />
@@ -1332,19 +1332,19 @@
             </a>
 
             <div class="nav-label" style="margin-top:6px;">Data Master</div>
-            <a href="{{ route('admin.penumpang.index') }}" class="nav-item {{ request()->routeIs('admin.penumpang.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.penumpang.index')); ?>" class="nav-item <?php echo e(request()->routeIs('admin.penumpang.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
                 Penumpang
             </a>
-            <a href="{{ route('admin.kereta.index') }}" class="nav-item {{ request()->routeIs('admin.kereta.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.kereta.index')); ?>" class="nav-item <?php echo e(request()->routeIs('admin.kereta.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m16.5 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                 </svg>
                 Kereta
             </a>
-            <a href="{{ route('admin.jadwal.index') }}" class="nav-item {{ request()->routeIs('admin.jadwal.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.jadwal.index')); ?>" class="nav-item <?php echo e(request()->routeIs('admin.jadwal.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                 </svg>
@@ -1352,19 +1352,19 @@
             </a>
 
             <div class="nav-label" style="margin-top:6px;">Transaksi</div>
-            <a href="{{ route('admin.pemesanan.index') }}" class="nav-item {{ request()->routeIs('admin.pemesanan.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.pemesanan.index')); ?>" class="nav-item <?php echo e(request()->routeIs('admin.pemesanan.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />
                 </svg>
                 Pemesanan
             </a>
-            <a href="{{ route('admin.laporan') }}" class="nav-item {{ request()->routeIs('admin.laporan') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.laporan')); ?>" class="nav-item <?php echo e(request()->routeIs('admin.laporan') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                 </svg>
                 Laporan
             </a>
-            <a href="{{ route('admin.users.index') }}" class="nav-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.users.index')); ?>" class="nav-item <?php echo e(request()->routeIs('admin.users.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                 </svg>
@@ -1386,16 +1386,16 @@
         <div class="topbar">
             <div class="topbar-left">
                 <nav class="breadcrumb-wrap">
-                    <a href="{{ route('admin.dashboard') }}">KAI Express</a>
+                    <a href="<?php echo e(route('admin.dashboard')); ?>">KAI Express</a>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
-                    <span class="current">@yield('breadcrumb', 'Dashboard')</span>
+                    <span class="current"><?php echo $__env->yieldContent('breadcrumb', 'Dashboard'); ?></span>
                 </nav>
             </div>
             <div class="topbar-right">
                 <div class="clock-badge" id="liveClock">00:00:00</div>
-                <form method="POST" action="{{ route('logout') }}" style="display:inline;">@csrf<button type="submit" style="background:var(--bg-surface2);border:1px solid var(--border);border-radius:var(--radius);padding:7px 14px;font-size:12.5px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:var(--font-body);transition:all .15s;" onmouseover="this.style.borderColor='rgba(192,57,43,.4)';this.style.color='#f87171'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'"><span class="logout-label">Keluar</span></button></form>
+                <form method="POST" action="<?php echo e(route('logout')); ?>" style="display:inline;"><?php echo csrf_field(); ?><button type="submit" style="background:var(--bg-surface2);border:1px solid var(--border);border-radius:var(--radius);padding:7px 14px;font-size:12.5px;font-weight:500;color:var(--text-muted);cursor:pointer;font-family:var(--font-body);transition:all .15s;" onmouseover="this.style.borderColor='rgba(192,57,43,.4)';this.style.color='#f87171'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'"><span class="logout-label">Keluar</span></button></form>
                 <div class="avatar-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -1411,32 +1411,34 @@
         </div>
 
         <div class="page-content">
-            @if(session('success'))
+            <?php if(session('success')): ?>
             <div class="k-alert success">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                {{ session('success') }}
-            </div>
-            @endif
-            @if(session('error'))
-            <div class="k-alert error">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                </svg>
-                {{ session('error') }}
-            </div>
-            @endif
-            @if($errors->any())
-            <div class="k-alert error">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                </svg>
-                <div>@foreach($errors->all() as $e)<div>{{ $e }}</div>@endforeach</div>
-            </div>
-            @endif
+                <?php echo e(session('success')); ?>
 
-            @yield('content')
+            </div>
+            <?php endif; ?>
+            <?php if(session('error')): ?>
+            <div class="k-alert error">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                </svg>
+                <?php echo e(session('error')); ?>
+
+            </div>
+            <?php endif; ?>
+            <?php if($errors->any()): ?>
+            <div class="k-alert error">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                </svg>
+                <div><?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><div><?php echo e($e); ?></div><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></div>
+            </div>
+            <?php endif; ?>
+
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
     </div>
 
@@ -1511,20 +1513,20 @@
     <!-- Admin Bottom Navigation (Mobile only) -->
     <nav class="admin-bottom-nav">
         <div class="admin-bottom-nav-inner">
-            <a href="{{ route('admin.dashboard') }}" class="abn-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.dashboard')); ?>" class="abn-item <?php echo e(request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
                     <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
                 </svg>
                 Dashboard
             </a>
-            <a href="{{ route('admin.pemesanan.index') }}" class="abn-item {{ request()->routeIs('admin.pemesanan.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.pemesanan.index')); ?>" class="abn-item <?php echo e(request()->routeIs('admin.pemesanan.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"/>
                 </svg>
                 Pesanan
             </a>
-            <a href="{{ route('admin.jadwal.index') }}" class="abn-item {{ request()->routeIs('admin.jadwal.*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('admin.jadwal.index')); ?>" class="abn-item <?php echo e(request()->routeIs('admin.jadwal.*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
                 </svg>
@@ -1539,7 +1541,7 @@
         </div>
     </nav>
 
-    @stack('scripts')
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 
-</html>
+</html><?php /**PATH C:\Users\rizki\Pictures\INFOKOM-REACT\Laravel\kai_project_website\resources\views/layouts/admin.blade.php ENDPATH**/ ?>

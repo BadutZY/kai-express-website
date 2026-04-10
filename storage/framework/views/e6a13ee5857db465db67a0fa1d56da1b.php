@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title','KAI Express') — KAI Express</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo-kai.png') }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+    <title><?php echo $__env->yieldContent('title','KAI Express'); ?> — KAI Express</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo e(asset('images/logo-kai.png')); ?>">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -844,7 +844,7 @@
         }
 
     </style>
-    @stack('styles')
+    <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
 
 <body>
@@ -856,15 +856,16 @@
         <div class="drawer-header">
             <div class="drawer-user-info">
                 <div class="drawer-avatar">
-                    @if(Auth::user()->photo_profile)
-                    <img src="{{ Storage::disk('public')->url(Auth::user()->photo_profile) }}" alt="foto">
-                    @else
-                    {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
-                    @endif
+                    <?php if(Auth::user()->photo_profile): ?>
+                    <img src="<?php echo e(Storage::disk('public')->url(Auth::user()->photo_profile)); ?>" alt="foto">
+                    <?php else: ?>
+                    <?php echo e(strtoupper(substr(Auth::user()->name, 0, 2))); ?>
+
+                    <?php endif; ?>
                 </div>
                 <div style="min-width:0;">
-                    <div class="drawer-name">{{ Str::limit(Auth::user()->name, 20) }}</div>
-                    <div class="drawer-email">{{ Auth::user()->email }}</div>
+                    <div class="drawer-name"><?php echo e(Str::limit(Auth::user()->name, 20)); ?></div>
+                    <div class="drawer-email"><?php echo e(Auth::user()->email); ?></div>
                 </div>
             </div>
             <button class="drawer-close" onclick="closeMobileDrawer()">
@@ -875,26 +876,26 @@
         </div>
         <div class="drawer-nav">
             <div class="drawer-nav-label">Menu</div>
-            <a href="{{ route('user.dashboard') }}" class="drawer-nav-item {{ request()->routeIs('user.dashboard') ? 'active' : '' }}">
+            <a href="<?php echo e(route('user.dashboard')); ?>" class="drawer-nav-item <?php echo e(request()->routeIs('user.dashboard') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
                 </svg>
                 Beranda
             </a>
-            <a href="{{ route('user.jadwal') }}" class="drawer-nav-item {{ request()->routeIs('user.jadwal') ? 'active' : '' }}">
+            <a href="<?php echo e(route('user.jadwal')); ?>" class="drawer-nav-item <?php echo e(request()->routeIs('user.jadwal') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
                 </svg>
                 Jadwal Kereta
             </a>
-            <a href="{{ route('user.tiket') }}" class="drawer-nav-item {{ request()->routeIs('user.tiket*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('user.tiket')); ?>" class="drawer-nav-item <?php echo e(request()->routeIs('user.tiket*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"/>
                 </svg>
                 Tiket Saya
             </a>
             <div class="drawer-nav-label" style="margin-top:8px;">Akun</div>
-            <a href="{{ route('user.profil') }}" class="drawer-nav-item {{ request()->routeIs('user.profil') ? 'active' : '' }}">
+            <a href="<?php echo e(route('user.profil')); ?>" class="drawer-nav-item <?php echo e(request()->routeIs('user.profil') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                 </svg>
@@ -902,8 +903,8 @@
             </a>
         </div>
         <div class="drawer-footer">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
+            <form method="POST" action="<?php echo e(route('logout')); ?>">
+                <?php echo csrf_field(); ?>
                 <button type="submit" class="drawer-logout">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/>
@@ -917,43 +918,43 @@
     <nav class="navbar-kai">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
-                <a href="{{ route('user.dashboard') }}" class="nav-logo">
-                    <div class="ni"><img src="{{ asset('images/logo-kai.png') }}" alt="KAI Logo"></div>
+                <a href="<?php echo e(route('user.dashboard')); ?>" class="nav-logo">
+                    <div class="ni"><img src="<?php echo e(asset('images/logo-kai.png')); ?>" alt="KAI Logo"></div>
                     <span class="nt">KAI Express</span>
                 </a>
                 <div class="nav-links d-none d-md-flex">
-                    <a href="{{ route('user.dashboard') }}" class="{{ request()->routeIs('user.dashboard') ? 'active' : '' }}">Beranda</a>
-                    <a href="{{ route('user.jadwal') }}" class="{{ request()->routeIs('user.jadwal') ? 'active' : '' }}">Jadwal</a>
-                    <a href="{{ route('user.tiket') }}" class="{{ request()->routeIs('user.tiket*') ? 'active' : '' }}">Tiket Saya</a>
+                    <a href="<?php echo e(route('user.dashboard')); ?>" class="<?php echo e(request()->routeIs('user.dashboard') ? 'active' : ''); ?>">Beranda</a>
+                    <a href="<?php echo e(route('user.jadwal')); ?>" class="<?php echo e(request()->routeIs('user.jadwal') ? 'active' : ''); ?>">Jadwal</a>
+                    <a href="<?php echo e(route('user.tiket')); ?>" class="<?php echo e(request()->routeIs('user.tiket*') ? 'active' : ''); ?>">Tiket Saya</a>
                 </div>
                 <div class="nav-user d-flex align-items-center" style="gap:8px;">
                     <!-- User dropdown (desktop) -->
                     <div class="user-dropdown d-none d-md-flex" id="userDropdown">
                         <div class="user-badge" onclick="toggleDropdown()">
-                            @if(Auth::user()->photo_profile)
-                            <img src="{{ Storage::disk('public')->url(Auth::user()->photo_profile) }}" alt="foto" class="avatar">
-                            @else
-                            <div class="avatar-init">{{ strtoupper(substr(Auth::user()->name, 0, 2)) }}</div>
-                            @endif
-                            <span>{{ Str::limit(Auth::user()->name, 18) }}</span>
+                            <?php if(Auth::user()->photo_profile): ?>
+                            <img src="<?php echo e(Storage::disk('public')->url(Auth::user()->photo_profile)); ?>" alt="foto" class="avatar">
+                            <?php else: ?>
+                            <div class="avatar-init"><?php echo e(strtoupper(substr(Auth::user()->name, 0, 2))); ?></div>
+                            <?php endif; ?>
+                            <span><?php echo e(Str::limit(Auth::user()->name, 18)); ?></span>
                             <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                             </svg>
                         </div>
                         <div class="ud-menu">
                             <div class="ud-header">
-                                <div class="ud-name">{{ Auth::user()->name }}</div>
-                                <div class="ud-email">{{ Auth::user()->email }}</div>
+                                <div class="ud-name"><?php echo e(Auth::user()->name); ?></div>
+                                <div class="ud-email"><?php echo e(Auth::user()->email); ?></div>
                             </div>
-                            <a href="{{ route('user.profil') }}" class="ud-item">
+                            <a href="<?php echo e(route('user.profil')); ?>" class="ud-item">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" />
                                 </svg>
                                 Edit Profil
                             </a>
                             <hr class="ud-sep">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
+                            <form method="POST" action="<?php echo e(route('logout')); ?>">
+                                <?php echo csrf_field(); ?>
                                 <button type="submit" class="ud-item danger" style="width:100%;background:none;border:none;text-align:left;cursor:pointer;font-family:var(--font);">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
@@ -976,28 +977,28 @@
 
     <div class="page-wrap">
         <div class="container">
-            @if(session('success'))
+            <?php if(session('success')): ?>
             <div class="k-alert success"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>{{ session('success') }}</div>
-            @endif
-            @if(session('error'))
+                </svg><?php echo e(session('success')); ?></div>
+            <?php endif; ?>
+            <?php if(session('error')): ?>
             <div class="k-alert error"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                </svg>{{ session('error') }}</div>
-            @endif
-            @if($errors->any())
+                </svg><?php echo e(session('error')); ?></div>
+            <?php endif; ?>
+            <?php if($errors->any()): ?>
             <div class="k-alert error"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
-                <div>@foreach($errors->all() as $e)<div>{{ $e }}</div>@endforeach</div>
+                <div><?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $e): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><div><?php echo e($e); ?></div><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></div>
             </div>
-            @endif
-            @yield('content')
+            <?php endif; ?>
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
     </div>
     <footer class="kai-footer">
-        <div class="container">KAI Express &copy; {{ date('Y') }} — Sistem Pemesanan Tiket Kereta Api</div>
+        <div class="container">KAI Express &copy; <?php echo e(date('Y')); ?> — Sistem Pemesanan Tiket Kereta Api</div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -1039,25 +1040,25 @@
     <!-- Bottom Navigation (Mobile only) -->
     <nav class="bottom-nav">
         <div class="bottom-nav-inner">
-            <a href="{{ route('user.dashboard') }}" class="bn-item {{ request()->routeIs('user.dashboard') ? 'active' : '' }}">
+            <a href="<?php echo e(route('user.dashboard')); ?>" class="bn-item <?php echo e(request()->routeIs('user.dashboard') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
                 </svg>
                 Beranda
             </a>
-            <a href="{{ route('user.jadwal') }}" class="bn-item {{ request()->routeIs('user.jadwal') ? 'active' : '' }}">
+            <a href="<?php echo e(route('user.jadwal')); ?>" class="bn-item <?php echo e(request()->routeIs('user.jadwal') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
                 </svg>
                 Jadwal
             </a>
-            <a href="{{ route('user.tiket') }}" class="bn-item {{ request()->routeIs('user.tiket*') ? 'active' : '' }}">
+            <a href="<?php echo e(route('user.tiket')); ?>" class="bn-item <?php echo e(request()->routeIs('user.tiket*') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"/>
                 </svg>
                 Tiket
             </a>
-            <a href="{{ route('user.profil') }}" class="bn-item {{ request()->routeIs('user.profil') ? 'active' : '' }}">
+            <a href="<?php echo e(route('user.profil')); ?>" class="bn-item <?php echo e(request()->routeIs('user.profil') ? 'active' : ''); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                 </svg>
@@ -1066,7 +1067,7 @@
         </div>
     </nav>
 
-    @stack('scripts')
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 
-</html>
+</html><?php /**PATH C:\Users\rizki\Pictures\INFOKOM-REACT\Laravel\kai_project_website\resources\views/layouts/user.blade.php ENDPATH**/ ?>
